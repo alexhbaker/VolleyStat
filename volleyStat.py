@@ -24,7 +24,7 @@ initialFrame.grid(row = 1, column = 0)
 
 initialFrameLabel = tkinter.Label(initialFrame, text="testing")
 initialFrameLabel.grid(row=0, column=0)
-initialFrameButton = tkinter.Button(initialFrame, text="Hit in play", command=p1.hitInPlay())
+initialFrameButton = tkinter.Button(initialFrame, text="Hit in play", command=p1.hitInPlay)
 initialFrameButton.grid(row=0, column=0)
 
 window.mainloop()
