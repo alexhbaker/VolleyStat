@@ -12,6 +12,11 @@ p1.hitInPlay()
 p1.hitInPlay()
 p1.hitInPlay()
 print(p1.he)
+hittingEfficiency = p1.he
+
+def hitInPlayButton():
+    p1.hitInPlay()
+    initialFrameLabel.config(text = p1.he)
 
 window = tkinter.Tk()
 window.title("VolleyStat - Fun, Free statistics")
@@ -22,10 +27,10 @@ frame.pack()
 initialFrame = tkinter.LabelFrame(frame, text="User Info")
 initialFrame.grid(row = 1, column = 0)
 
-initialFrameLabel = tkinter.Label(initialFrame, text="testing")
+initialFrameLabel = tkinter.Label(initialFrame, text=hittingEfficiency)
 initialFrameLabel.grid(row=0, column=0)
-initialFrameButton = tkinter.Button(initialFrame, text="Hit in play", command=p1.hitInPlay)
-initialFrameButton.grid(row=0, column=0)
+initialFrameButton = tkinter.Button(initialFrame, text="Hit in play", command=hitInPlayButton)
+initialFrameButton.grid(row=0, column=1)
 
 window.mainloop()
 
