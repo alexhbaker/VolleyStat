@@ -23,6 +23,6 @@ class Player:
         self.HittingEfficiency()
 
     def HittingEfficiency(self):
-        self.he = (self.kills - self.errors) / self.attempts
+        self.he = round(((self.kills - self.errors) / self.attempts), 4)
 
     pass
