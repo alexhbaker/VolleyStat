@@ -1,43 +1,40 @@
 import tkinter
 import Player
+import FrameObject
+# from ttk import ttk
+import ttkbootstrap as ttk
 
-p1 = Player.Player("Alex", 27)
-hittingEfficiency = p1.he
+# TODO
+# Add a button to add a player / DONE
+# Figure out how to show multiple players at the same time / DONE
+# Find a way on how to input a player's name and number into the add player button / DONE
+# Make it looker prettier using ttkbootstrap? :]
 
-def hitInPlayButton():
-    p1.hitInPlay()
-    initialFrameLabel.config(text = "Efficiency: " + str(p1.he))
+row = 2
 
-def killButton():
-    p1.killScored()
-    initialFrameLabel.config(text = "Efficiency: " + str(p1.he))
+def newPlayerButton():
+    global row
+    FrameObject.frameObject(output.get("1.0","end-1c"), numberOutput.get("1.0","end-1c"), frame, row)
+    row+=1
 
-def errorButton():
-    p1.errorRecorded()
-    initialFrameLabel.config(text= "Efficiency: " + str((p1.he)))
-
-window = tkinter.Tk()
+window = ttk.Window(themename="darkly")
 window.title("VolleyStat - Fun, Free statistics")
 
-frame = tkinter.Frame(window)
+frame = ttk.Frame(window)
 frame.pack()
 
-initialFrame = tkinter.LabelFrame(frame, text="User Info")
+initialFrame = ttk.LabelFrame(frame, text="User Info")
 initialFrame.grid(row = 1, column = 0)
 
-initialFrameLabel = tkinter.Label(initialFrame, text="Efficiency: " + str(hittingEfficiency))
-initialFrameLabel.grid(row=0, column=0)
-initialFrameButton = tkinter.Button(initialFrame, text="Hit in play", command=hitInPlayButton)
+initialFrameButton = ttk.Button(initialFrame, text="New Player", command = newPlayerButton)
 initialFrameButton.grid(row=0, column=1)
-initialFrameButton1 = tkinter.Button(initialFrame, text="Kill", command=killButton)
-initialFrameButton1.grid(row=0, column=2)
-initialFrameButton2 = tkinter.Button(initialFrame, text="Error", command=errorButton)
-initialFrameButton2.grid(row=0, column=3)
+nameText = ttk.Label(initialFrame, text="Name: ")
+nameText.grid(row=0, column=2)
+output = ttk.Text(initialFrame, height = 1, width = 10, bg = "light cyan")
+output.grid(row=0, column=3)
+numberText = ttk.Label(initialFrame, text="Number: ")
+numberText.grid(row=0, column=4)
+numberOutput = ttk.Text(initialFrame, height=1, width=2, bg="light cyan")
+numberOutput.grid(row=0,column=5)
 
 window.mainloop()
-
-print(p1.he)
-
-
-
-#tkinter.Button("hello")
