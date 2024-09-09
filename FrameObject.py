@@ -2,29 +2,32 @@ import ttkbootstrap as ttk
 import Player
 
 # We want to pass in the player name and this will give back a frame object with that name
+
+# -1 to 1 in 1 to 100
+
 def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
     
     def hitInPlayButton():
         player.hitInPlay()
-        
-        hitEfficiency = f"{((player.he*500)+500):.4f}"
+        hitEfficiency = f"{((player.he*50)+50):.4f}"
         initialFrameLabel.config(text= "Efficiency: " + str(hitEfficiency))
+        progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
-        print(player.kp)
 
     def killButton():
         player.killScored()
-        hitEfficiency = f"{((player.he*500)+500):.4f}"
+        hitEfficiency = f"{((player.he*50)+50):.4f}"
         initialFrameLabel.config(text= "Efficiency: " + str(hitEfficiency))
+        progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
-        print(hitEfficiency)
 
     def errorButton():
         player.errorRecorded()
         if player.he < 0:
             meterFrame['bootstyle'] = 'Danger'
-        hitEfficiency = f"{((player.he*500)+500):.4f}"
+        hitEfficiency = f"{((player.he*50)+50):.4f}"
         initialFrameLabel.config(text= "Efficiency: " + str(hitEfficiency))
+        progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
 
     player = Player.Player(name, number)
