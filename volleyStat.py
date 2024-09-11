@@ -10,7 +10,8 @@ import ttkbootstrap as ttk
 # Find a way on how to input a player's name and number into the add player button / DONE
 # Make it looker prettier using ttkbootstrap? :]
 
-row = 2
+row = 4
+# column = 1
 
 def newPlayerButton():
     global row

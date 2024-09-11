@@ -11,7 +11,7 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
         player.hitInPlay()
         progressBarColor()
         hitEfficiency = hittingEfficiencyString()
-        initialFrameLabel.config(text= "Efficiency: " + hitEfficiency)
+        initialFrameLabel.config(text= "Efficiency: " + hitEfficiencyJust())
         progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
 
@@ -19,7 +19,7 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
         player.killScored()
         progressBarColor()
         hitEfficiency = hittingEfficiencyString()
-        initialFrameLabel.config(text= "Efficiency: " + hitEfficiency)
+        initialFrameLabel.config(text= "Efficiency: " + hitEfficiencyJust())
         progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
 
@@ -27,15 +27,22 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
         player.errorRecorded()
         progressBarColor()
         hitEfficiency = hittingEfficiencyString()
-        initialFrameLabel.config(text= "Efficiency: " + hitEfficiency)
+        initialFrameLabel.config(text= "Efficiency: " + hitEfficiencyJust())
         print(len(str(player.he)))
         progressFrame['value'] = hitEfficiency
         meterFrame.amountusedvar.set(player.kp)
 
     def hittingEfficiencyString() -> str:
         hitEfficiency = f"{((player.he*50)+50):.4f}"
-        hitEfficiency.ljust(6, '0')
         return hitEfficiency
+    
+    def hitEfficiencyJust() -> str:
+        strHE = str(player.he)
+        if player.he >= 0:
+            return strHE.ljust(6, '0')
+        else:
+            return strHE.ljust(7, '0')
+        # return strHE
 
     def progressBarColor():
         s = ttk.Style()
@@ -58,9 +65,10 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
     userText = name + " #" + str(number)
     initialFrame = ttk.LabelFrame(frame, text=userText)
     initialFrame.columnconfigure((0,1), weight=1)
-    initialFrame.grid(row = rowNum, column = 0)
+    print("row - " + str(rowNum/2) + " column - " + str(rowNum%2))
+    initialFrame.grid(row = int(rowNum/2), column = rowNum%2)
 
-    initialFrameLabel = ttk.Label(initialFrame, text="Efficiency: " + str(player.he))
+    initialFrameLabel = ttk.Label(initialFrame, text="Efficiency: " + hitEfficiencyJust())
 
     initialFrameLabel.grid(row=0, column=3, padx=5, pady=2)
     initialFrameButton = ttk.Button(initialFrame, text="Hit in play", command=hitInPlayButton, bootstyle="outline-info")
