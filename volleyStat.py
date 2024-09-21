@@ -3,6 +3,7 @@ import Player
 import FrameObject
 # from ttk import ttk
 import ttkbootstrap as ttk
+from PIL import Image, ImageTk
 
 # TODO
 # Add a button to add a player / DONE
@@ -38,5 +39,11 @@ numberText = ttk.Label(initialFrame, text="Number: ")
 numberText.grid(row=0, column=4)
 numberOutput = ttk.Text(initialFrame, height=1, width=2, bg="light cyan")
 numberOutput.grid(row=0,column=5, padx=5, pady=2)
+
+
+image1 = Image.open("court.jpg")
+photo = ImageTk.PhotoImage(image1)
+imageButton = ttk.Button(frame, image=photo)
+imageButton.grid(row = 1, column = 1)
 
 window.mainloop()
