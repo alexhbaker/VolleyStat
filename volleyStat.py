@@ -18,6 +18,12 @@ def newPlayerButton():
     FrameObject.frameObject(output.get("1.0","end-1c"), numberOutput.get("1.0","end-1c"), frame, row)
     row+=1
 
+def undoButton():
+    global row
+    frame.grid_forget()
+    print("test")
+    row -=1
+
 window = ttk.Window(themename="darkly", size=[1000,400])
 window.title("VolleyStat - Fun, Free statistics")
 
@@ -38,5 +44,7 @@ numberText = ttk.Label(initialFrame, text="Number: ")
 numberText.grid(row=0, column=4)
 numberOutput = ttk.Text(initialFrame, height=1, width=2, bg="light cyan")
 numberOutput.grid(row=0,column=5, padx=5, pady=2)
+undoButton = ttk.Button(initialFrame, text="undo", command=undoButton)
+undoButton.grid(row=0,column=6)
 
 window.mainloop()

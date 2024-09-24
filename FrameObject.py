@@ -1,9 +1,8 @@
 import ttkbootstrap as ttk
 import Player
 
-# We want to pass in the player name and this will give back a frame object with that name
-
-# -1 to 1 in 1 to 100
+# TODO
+# Add an undo button that takes away the most recent action
 
 def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
     
@@ -58,6 +57,12 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
         else:
             progressFrame['style'] = 'yellow.Vertical.TProgressbar'
 
+    def undoButton():
+        global row
+        initialFrame.grid_forget()
+        print("test")
+        row -=1
+
     # Creating the player object
     player = Player.Player(name, number)
 
@@ -83,4 +88,8 @@ def frameObject(name: str, number: int, frame, rowNum: int) -> ttk.LabelFrame:
 
     meterFrame = ttk.Meter(initialFrame, amountused=player.kp, arcrange=180, interactive=False, amounttotal=100, subtext="Kill Percentage", textright="%", metersize=150)
     meterFrame.grid(row=0, column=5, padx=5, pady=2)
+
+    undoButton = ttk.Button(initialFrame, text="undo", command=undoButton)
+    undoButton.grid(row=0,column=6)
+    
     pass
